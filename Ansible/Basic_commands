@@ -4,8 +4,9 @@ Ansible :
 3.	Ansible-galaxy
 
 
-Adhoc-Mode/Playbook :
----------------------
+Adhoc-Mode
+----------
+
 -	Syntax-1
     Ansible { group name/server name }  - I { inventory/host name } –m { module } 
     Ex:  ansible web -i inventory -m ping
@@ -15,7 +16,29 @@ Adhoc-Mode/Playbook :
     Ex:  ansible web -i inventory -m yum -a "name=httpd state=latest" -b
     note :  -b for become root user
 
-  Example commands : 
+
+Ansible-Playbook
+----------------
+
+-   Syntax
+    Ansible-playbook {playbook name}
+    Ansible-playbook -vvv {playbook name} 
+    Ansible-playbook {playbook name} --sysntax-check
+    Ansible-playbook {playbook name} --check
+    
+
+Ansible-Galaxy 
+--------------
+
+-   Syntax
+    ansible-galaxy [delete|import|info|init|install|list|login|remove|search|setup] {file name}
+
+
+--------------------------------------------------------------------------------------------------------------------------
+|																													     |
+|------------------------------------------------Basic commands----------------------------------------------------------| 
+|																														 | 
+--------------------------------------------------------------------------------------------------------------------------
 
     1. Crreate a file with permissions
        ansible 34.245.45.232 -i inventory -m file -a "path=/opt/anand.html state=touch owner=ec2-user group=ec2-user mode=0700" -b
@@ -123,3 +146,5 @@ Adhoc Mode Reference Pages :
 4. https://ansible-tips-and-tricks.readthedocs.io/en/latest/ansible/commands/
 5. https://devopsmates.com/getting-started-with-ansible-ad-hoc-commands/
 6. https://devopsideas.com/ansible-ad-hoc-commands-usage/
+
+
