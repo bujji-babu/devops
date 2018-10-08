@@ -4,7 +4,8 @@ Ansible :
 3.	Ansible-galaxy
 
 
-Adhoc-Mode:
+Adhoc-Mode/Playbook :
+---------------------
 -	Syntax-1
     Ansible { group name/server name }  - I { inventory/host name } –m { module } 
     Ex:  ansible web -i inventory -m ping
