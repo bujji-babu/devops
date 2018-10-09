@@ -137,6 +137,22 @@ Ansible-Galaxy
     29. Run operations in the background
         ansible -b app -B 3600 -a "yum -y update"
 
+    30. Download a file/zip in playbook
+        - name: download Tomcat
+          get_url: url=http://redrockdigimark.com/apachemirror/tomcat/tomcat-8/v8.5.31/bin/apache-tomcat-8.5.31.tar.gz dest=/opt/apache-tomcat-8.5.31.tar.gz
+
+    31. Unzip/extract a file
+        - name: Extract Tomcat archive
+          unarchive:  src=/opt/apache-tomcat-8.5.31.tar.gz dest=/opt owner=root group=root creates=/opt/apache-tomcat-8.5.31
+
+        - name: Extract Tomcat archive
+          command: tar zxvf /opt/apache-tomcat-8.5.31.tar.gz -C /opt/ creates=/opt/apache-tomcat-8.5.31
+
+    32. Start the Apache
+        - name: Start Tomcat
+          command: nohup /opt/apache-tomcat-8.5.31/bin/startup.sh
+
+    33. 
 
 
 Adhoc Mode Reference Pages :
@@ -148,3 +164,20 @@ Adhoc Mode Reference Pages :
 6. https://devopsideas.com/ansible-ad-hoc-commands-usage/
 
 
+
+Ansible-Playbook Reference Pages :
+1. https://github.com/gouthamchilakala/ansible-training
+2. https://github.com/gouthamchilakala/Apache-WebServer
+
+
+
+
+Playbook_conditions :
+	- vars
+	- extra_vars
+	- var_files
+	- set_facts
+	- notify_hadler
+	- when
+	- include
+	-
