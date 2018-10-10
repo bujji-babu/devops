@@ -174,10 +174,116 @@ Ansible-Playbook Reference Pages :
 
 Playbook_conditions :
 	- vars
+	--------------------------------------------------------------
+				---
+				 - name: Apache Installation and Configuration
+				   hosts: app
+				   vars:
+				    - package : httpd
+				   become: True
+
+				   tasks:
+				   - name: Install Apache
+				     yum: name={{ package }} state=latest
+
+				   - name: Restart Apache
+				     service: name={{ package }} state=restarted
+	--------------------------------------------------------------
+
 	- extra_vars
+	  Note :  ansible-playbook vars_extra.yml --extra-vars "package=httpd"
+	--------------------------------------------------------------
+			    ---
+				 - name: Apache Installation and Configuration
+				   hosts: app
+				   become: True
+
+				   tasks:
+				   - name: Install Apache
+				     yum: name={{ package }} state=latest
+
+				   - name: Restart Apache
+				     service: name={{ package }} state=restarted
+	--------------------------------------------------------------
+
 	- var_files
+
+	  Note :Varfiles.yml
+	        ---
+
+  				package: httpd
+	--------------------------------------------------------------
+				---
+				 - name: Apache Installation and Configuration
+				   hosts: app
+				   vars_files:
+				    - varfiles.yml
+				   become: True
+
+				   tasks:
+				   - name: Install Apache
+				     yum: name={{ package }} state=latest
+
+				   - name: Restart Apache
+				     service: name={{ package }} state=restarted
+
+	--------------------------------------------------------------
+
 	- set_facts
+	--------------------------------------------------------------
+				---
+				 - name: This play is a basic appserverworld execution
+				   hosts: app
+				   gather_facts: True
+
+				   tasks:
+
+				     - set_fact: Anand="Hello Ansible!!"
+
+				     - debug: var=Anand
+	--------------------------------------------------------------
+
 	- notify_hadler
+	--------------------------------------------------------------
+				---
+				 - name: notify handler condition
+				   hosts: app
+				   become: True
+
+				   tasks:
+				   - name: install apapche
+				     yum: name=httpd state=latest
+
+				   - name: Copy the file to destination
+				     copy: src=/root/index.html dest=/var/www/html/
+				     notify:
+				     - restart apache
+
+				   handlers:
+				   - name: restart apache
+				     service: name=httpd state=restarted
+	--------------------------------------------------------------
+
 	- when
+	--------------------------------------------------------------
+				---
+				 - name: Apache Installation and Configuration
+				   hosts: app
+				   become: True
+
+				   tasks:
+				   - name: Install Apache
+				     yum: name=httpd state=latest
+				     when: ansible_distribution == "RedHat" or ansible_distribution == "Ubuntu"
+
+				   - name: Copy the file to destination
+				     copy: src=/root/index.html dest=/var/www/html/
+
+	--------------------------------------------------------------
+
 	- include
-	-
+	--------------------------------------------------------------
+	
+
+
+
