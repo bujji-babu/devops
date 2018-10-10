@@ -33,6 +33,9 @@ Ansible-Galaxy
 -   Syntax
     ansible-galaxy [delete|import|info|init|install|list|login|remove|search|setup] {file name}
 
+-   Roles
+    url :  https://github.com/DevOpsScripts/Apache_webserver_role
+
 
 --------------------------------------------------------------------------------------------------------------------------
 |																													     |
